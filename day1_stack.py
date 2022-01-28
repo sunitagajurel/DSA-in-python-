@@ -3,10 +3,12 @@ def createStack():
     stack = []
     return stack  
 
+def isEmpty(): 
+    if len(stack)==0:
+        return True
 #push into stack
 def pushStack(stack,item): 
     return stack.append(item)
-
 
 #pop item from stack 
 def popStack(stack):
@@ -22,6 +24,7 @@ def peekStack(stack):
     return ('the top of stack is {}'.format(top))
 
 stack = createStack()
+print(isEmpty())
 pushStack(stack,1)
 pushStack(stack,2)
 pushStack(stack,3)

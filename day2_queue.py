@@ -45,14 +45,19 @@ class Queue:
         if self.checkEmpty():
             print("Queue is empty")
         print("Rear item is",  self.Q[self.rear])
+
+    # def __str__(self):
+    #     return(str(self.Q))
     
 queue = Queue(20)
+print(queue)
 queue.EnQueue(5)
 queue.EnQueue(5)
 queue.EnQueue(60)
 queue.DeQueue()
 queue.que_front()
 queue.que_rear()
+
 
         
     
