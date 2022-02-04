@@ -1,9 +1,11 @@
+from sympy import N
+
+
 class Node: 
     #each node contains data and link of the next node
     def __init__(self,data):
         self.data = data 
         self.Next = None
-
 class LinkedList: 
     def __init__(self):
         self.head = None
@@ -12,6 +14,16 @@ class LinkedList:
         new_node = Node(data)
         new_node.Next = self.head
         self.head = new_node
+
+    def insert(self,data):
+        new_node = Node(data)
+        if self.head is None: 
+            self.head = new_node 
+        else: 
+            print("no position defined")
+
+
+    
 
     def insertAtEnd(self,data):
         new_node= Node(data)
@@ -23,14 +35,40 @@ class LinkedList:
                 n = n.Next
             n.Next = new_node
 
-    def insertAtMid(self,pos,data): 
+    def insertAfter(self,pos,data): 
         new_node = Node(data)
         n = self.head
-        while n.data is not pos:
-           n =n.Next
-        new_node.Next = n.Next
-        n.Next= new_node
+        while n is not None:
+            if n.data == pos:
+               break
+            n = n.Next
+        if n is None:
+            print("no such node found")
+        else: 
+            new_node.Next = n.Next
+            n.Next= new_node
+    
+    def insertBefore(self,pos,data):
+        if self.head is None: 
+            print("Linked list is empty")
+            return 
         
+        if self.head.data == pos: 
+            self.insertAtBegin(data)
+            return
+
+        new_node = Node(data)
+        n = self.head
+        while n.Next is not None: 
+            if n.Next.data == pos:
+                break
+            n =n.Next        
+        if n.Next is None:
+            print("no such node found")
+        else: 
+            new_node.Next = n.Next
+            n.Next= new_node
+
     def traversal (self): 
         if self.head is None: 
             return "Linked List is empty"
@@ -42,10 +80,12 @@ class LinkedList:
 
 
 lL= LinkedList()
-lL.insertAtBegin(20)
+lL.insert(20)
 lL.insertAtBegin(50)
 lL.insertAtEnd(60)
-lL.insertAtMid(50,80)
+lL.insertAfter(20,10)
+lL.insertBefore(10,80)
+
 print(lL.traversal())
 
 
