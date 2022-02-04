@@ -78,6 +78,47 @@ class LinkedList:
                 print(n.data,"---->",end = " ") #self.head.data, self.head.Next.data,self.head.Next.Next.data
                 n = n.Next
 
+    def deleteAtBegin (self):
+        if self.head is None: 
+            print("List is empty")
+            return  
+        self.head = self.head.Next
+
+    def deleteAtEnd (self):
+        if self.head is None: 
+            print("List is empty")
+            return 
+        
+        elif self.head.Next is None: 
+            self.head = None
+
+        else: 
+            n= self.head
+            while n.Next.Next is not None: 
+                n= n.Next 
+            n.Next = None
+            return
+    
+    def deleteAtMid(self,pos):
+        if self.head is None: 
+            print("List is empty")
+            return 
+
+        if self.head.data is pos : 
+            self.head = self.head.Next
+            return 
+
+        n= self.head
+        while n.Next is not None:
+            if n.Next.data == pos:
+                break 
+            n = n.Next
+                
+        if n.Next is None: 
+            print("no such node found")
+            return 
+        else: 
+            n.Next = n.Next.Next
 
 lL= LinkedList()
 lL.insert(20)
@@ -85,8 +126,10 @@ lL.insertAtBegin(50)
 lL.insertAtEnd(60)
 lL.insertAfter(20,10)
 lL.insertBefore(10,80)
-
+lL.deleteAtMid(500)
 print(lL.traversal())
+
+
 
 
 
