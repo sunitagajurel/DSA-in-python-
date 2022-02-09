@@ -103,17 +103,58 @@ class doublyLinkedList:
                 n = n.prev
 
         # print(self.head.next.next.data)
-        
-    
-    def removeAtBegin():
-        return 
+    def removeAtBegin(self):
+        if self.head is None: 
+            return "linked list is empty"
+        else: 
+            self.head = self.head.next
+            self.head.prev = None
 
-    def removeAtValue():
-        return 
-    
-    def removeAtEnd():
-        return 
+    def removeAtValue(self,value):
+        if self.head is None: 
+            return "linked list is empty"
 
+        if self.head.data is value : 
+            print("first data ")
+            self.head = self.head.next
+            self.head.prev = None
+            return 
+
+        else : 
+            n = self.head
+            while n.next is not None: 
+                if n.next.data is value:
+                    print(n.next.data)
+                    break 
+                n = n.next
+
+            if n.next is None: 
+                print("No data found")
+                return 
+
+            if n.next.next is None: 
+                n.next = None
+                return 
+            
+            else : 
+                n.next = n.next.next
+                n.next.prev = n
+
+
+    
+    def removeAtEnd(self):
+        if self.head is None: 
+            return "linked list is empty"
+
+        if self.head.next is None : 
+            self.head = self.head.next
+            self.head.prev = None
+            return 
+
+        n = self.head
+        while n.next.next is not None:
+            n = n.next 
+        n.next = None
 
 db = doublyLinkedList()
 db.insertAtBegin(10)
@@ -123,7 +164,13 @@ db.insertAtEnd(20)
 db.insertBeforeValue(40,10)
 db.insertAfterValue(60,40)
 db.forwardTraversal()
+db.removeAtBegin()
+db.forwardTraversal()
+db.removeAtEnd()
+db.forwardTraversal()
+db.removeAtValue(10)
 db.reverseTraversal()
+
 
 
 
