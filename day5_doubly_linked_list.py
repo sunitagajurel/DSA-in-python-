@@ -34,9 +34,7 @@ class doublyLinkedList:
             while n.next is not None: 
                 n = n.next
             n.next = new_node
-            new_node.prev = self.head
-
-        
+            new_node.prev = n
 
     def insertBeforeValue(self,data,value):
         if self.head is None: 
@@ -59,7 +57,9 @@ class doublyLinkedList:
             else: 
                 new_node.prev = n 
                 new_node.next = n.next 
+                n.next.prev = new_node
                 n.next = new_node
+                
 
     def insertAfterValue(self,data,value):
         if self.head is None: 
@@ -76,21 +76,34 @@ class doublyLinkedList:
             else: 
                 new_node.prev = n 
                 new_node.next = n.next 
+                n.next.prev = new_node
                 n.next = new_node
 
+
     def forwardTraversal(self):
-        if self.head is None: 
+        n =self.head
+        if n is None: 
             print("linked list is empty")
         else: 
-            while self.head is not None:
-                print(self.head.data ,'--> ', end = " ")
-                self.head = self.head.next
+            while n is not None:
+                print(n.data ,'--> ', end = " ")
+                n= n.next 
+
+    def reverseTraversal(self):
+        print("reverse traversal")
+        if self.head is None: 
+            print("Linked list is empty")
+        else: 
+            n = self.head
+            while n.next is not None:
+                n = n.next
+                
+            while n is not None: 
+                print(n.data,'---->',end = " ")
+                n = n.prev
 
         # print(self.head.next.next.data)
         
-
-    def reverseTraversal():
-        return 
     
     def removeAtBegin():
         return 
@@ -108,8 +121,9 @@ db.insertAtBegin(100)
 db.insertAtBegin(50)
 db.insertAtEnd(20)
 db.insertBeforeValue(40,10)
-db.insertAfterValue(50,40)
+db.insertAfterValue(60,40)
 db.forwardTraversal()
+db.reverseTraversal()
 
 
 
