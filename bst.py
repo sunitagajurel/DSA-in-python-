@@ -14,10 +14,18 @@ class tree:
             
 
     def in_order_traversal(self):
-        return 
+        if self.left_child: 
+            self.left_child.in_order_traversal()
+        print(self.key)
+        if self.right_child: 
+            self.right_child.in_order_traversal()
 
     def post_order_traversal(self): 
-        return 
+        if self.right_child:
+            self.right_child.post_order_traversal()
+        print(self.key)
+        if self.left_child: 
+            self.left_child.post_order_traversal()
 
     def insert_data(self,data):
         if data <= self.key: 
@@ -81,6 +89,10 @@ print("min value is :", root.find_min())
 print(root.search_data(50))
 
 root.pre_order_traversal()
+print("inorder traversal")
+root.in_order_traversal()
+print("postorder traversal")
+root.post_order_traversal()
 
 
 
