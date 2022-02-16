@@ -97,6 +97,46 @@ class tree:
             self.right_child = self.right_child.delete_node(data)
         return self
 
+
+
+    def delete(self,data): 
+        if self.key is None: 
+            print("node is empty")
+            return 
+        if self.key < data: 
+            if self.left_child: 
+              self.left_child = self.left_child.delete(data)
+            else: 
+                print("no data found")
+        if self.key > data: 
+            if self.right_child:
+                self.right_child = self.right_child.delete(data)
+            else: 
+                print("no data found")
+        else: 
+            if  self.left_child is None: 
+                temp = self.right_child
+                self = None 
+                return temp
+
+            if self.right_child is None: 
+                temp = self.left_child
+                self = None 
+                return temp 
+
+            node = self.right_child
+            while node.left_child:
+                node = node.left_child 
+            self.key = node.key 
+            self.right_child = self.right_child.delete(node.key)
+            return self
+
+
+
+
+        
+
+
 root = tree(10)
 root.insert_data(5)
 root.insert_data(25)
@@ -115,7 +155,7 @@ print("min value is :", root.find_min())
 print(root.search_data(50))
 
 root.pre_order_traversal()
-root.delete_node(25)
+root.delete_node(15)
 print("inorder traversal")
 root.in_order_traversal()
 print("postorder traversal")
