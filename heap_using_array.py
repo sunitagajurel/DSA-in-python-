@@ -35,7 +35,7 @@ class heap:
     def leftChild(self,index):
         return self.storage[self.getLeftChildIndex(index)]
 
-    def righChild(self,index):
+    def rightChild(self,index):
         return self.storage[self.getRightChildIndex(index)]
 
 
@@ -44,21 +44,45 @@ class heap:
         self.storage[index1] = self.storage[index2]
         self.storage[index2] = temp
 
-    # def insertData(self,data): 
-    #     if self.isFull(): 
-    #         return"the capcity is full" 
-    #     self.storage[self.size]= data
-    #     self.size += 1 
-    #     self.heapifDown()
+    def insertData(self,data): 
+        if self.isFull(): 
+            raise"the capcity is full" 
+        self.storage[self.size]= data
+        self.size += 1 
+        self.heapifyUp(self.size -1)
 
-    # def heapifyDown(self):
-    #     index = self.size -1 
-    #     while self.hasParent(index) and self.leftChild(index) > self.storage[index]: 
-    #         self.swap(index)
+    def heapifyUp(self,index): 
+        if self.hasParent(index) and self.parent(index) > self.storage[index]: 
+            self.swap(self.getParentIndex(index),index)
+        if self.hasParent(index): 
+            self.heapifyUp(self.getParentIndex(index))
+        return
+
+    def removeMin(self):
+        if(self.size == 0):
+            raise("Empty Heap")
+        data = self.storage[0]
+        self.storage[0]= self.storage[self.size-1]
+        self.size -=1 
+        index = 0
+        self.heapifyDown(index)
+        return data 
+
+    def heapifyDown(self,index): 
+        if self.hasLeftChild(index): 
+            smallChildIndex = self.getLeftChildIndex(index)
+            if (self.hasRightChild(index) and self.rightChild(index) <self.leftChild(index)): 
+                smallChildIndex = self.getRightChildIndex(index)
+            if (self.storage[index] <self.storage[smallChildIndex]):
+                return  
+            else: 
+                self.swap(index,smallChildIndex)
+            self.heapifyDown(smallChildIndex)
         
-
-
 root = heap(10)
-root.insert(15)
-root.insert(10)
+root.insertData(20)
+root.insertData(10)
+root.insertData(25)
+root.insertData(50)
 print(root.storage)
+print(root.removeMin())
