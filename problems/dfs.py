@@ -1,11 +1,6 @@
-from ast import GtE
 
-
-tree = [['A','B','c'],['D','E','F'],['G','H','I']]
-for row in tree : 
-    print(row)
-startpos = (0,0)
-goalpos= (1,1)
+startpos = (1,0)
+goalpos= (0,2)
 
 #for obtaining neighbour
 offsets = {
@@ -16,7 +11,7 @@ offsets = {
 }
 
 
-def dfs (tree,start,goal):
+def dfs (start,goal):
     stack = [start] 
     visited = []
     full_path= []
@@ -24,7 +19,6 @@ def dfs (tree,start,goal):
 
     while stack: 
         current = stack.pop()
-        print('stack is{}'.format(stack))
         full_path.append(current)
         visited.append(current)
         if current == goal:
@@ -36,8 +30,7 @@ def dfs (tree,start,goal):
             #checking if index is out of range 
             if neighbour[0]<3 and neighbour[0]>-1 and neighbour[1]<3 and neighbour[1]>-1 and neighbour not in visited:
                 stack.append(neighbour)
-                print('stack is{}'.format(stack))
-print(dfs(tree,startpos,goalpos))
+print(dfs(startpos,goalpos))
 
 
 

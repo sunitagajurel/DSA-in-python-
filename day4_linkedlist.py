@@ -1,6 +1,3 @@
-from sympy import N
-
-
 class Node: 
     #each node contains data and link of the next node
     def __init__(self,data):

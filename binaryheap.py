@@ -56,7 +56,25 @@ class heap:
         return self
 
     def heapify_down(self):
-        return 
+        if self.left_child: 
+            if self.left_child.left_child: 
+              self.left_child.heapify_down()
+
+            if self.key > self.left_child.key:
+                print('-----')
+                print("workd")
+                temp = self.left_child.key 
+                self.left_child.key = self.key 
+                self.key = temp 
+                self.heapify_down()
+                
+            if self.right_child:
+                if self.key > self.right_child.key:
+                    print("works")
+                    temp = self.right_child.key 
+                    self.right_child.key = self.key 
+                    self.key = temp
+                    self.heapify_down()  
 
     def delete_node(self,key): 
         return 
@@ -66,8 +84,10 @@ list = [10,18,6,2,20]
 for i in list: 
     root.insert(i) 
 
-
 root.pre_order_traversal()
 print(root.left_child.left_child.key)
 root.heapify()
 root.pre_order_traversal()
+root.heapify_down()
+root.pre_order_traversal()
+
