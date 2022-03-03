@@ -14,7 +14,11 @@ def add_node(v):
             temp.append(0)
         graph.append(temp)
         
-
+def print_graph():
+    for i in range(node_count):
+        for j in range(node_count):
+            print(graph[i][j],end = "")
+        print()
 
 nodes = []
 #adjacent matrix
@@ -25,6 +29,7 @@ print("before addingnodes,no.of node = ",node_count,nodes)
 add_node('A')
 add_node('B')
 print("after addingnodes,no.of node = ",node_count,nodes)
+print_graph()
 
 
 
