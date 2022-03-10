@@ -1,7 +1,6 @@
 #function new node to graph using adjacncy matrix representation 
 from operator import indexOf
 
-
 def add_node(v):
     global node_count
     if v in nodes: 
@@ -28,10 +27,34 @@ def add_edge(v1,v2):
         index_v1 = nodes.index(v1)
         index_v2 = nodes.index(v2)
         graph[index_v1][index_v2] = 1
-        graph[index_v2][index_v1] = 1 #not necessary in directed graph there will be direction from A-> B 
+        graph[index_v2][index_v1] = 1 #not necessary in directed graph there will be direction from A-> B only 
     return graph
 
-    
+def  del_node(node):
+    global node_count
+    if node not in nodes: 
+        print("node not present")
+    else: 
+        index_node = nodes.index(node)
+        node_count = node_count-1
+        nodes.remove(node)
+        graph.pop(index_node)
+        for i in graph:
+            i.pop(index_node)
+    return graph
+
+def del_edge(v1,v2):
+    if (v1 not in nodes):
+        print(v1, "not present in graph")
+    elif v2 not in nodes: 
+        print(v1, "not present in graph")
+    else:
+        index_v1 = nodes.index(v1)
+        index_v2 = nodes.index(v2)
+        graph[index_v1][index_v2] = 0
+        graph[index_v2][index_v1] = 0
+    return graph           
+
 def print_graph():
     for i in range(node_count):
         for j in range(node_count):
@@ -45,11 +68,12 @@ node_count = 0
 
 print("before addingnodes,no.of node = ",node_count,nodes,graph)
 add_node('A')
-add_node('B')
+add_node('B') 
 print("after addingnodes,no.of node = ",node_count,nodes,graph)
 add_edge('A','C')
 add_edge('A','B')
 print("after addingnodes,no.of node = ",node_count,nodes,graph)
+del_node('A')
 print_graph()
 
 
